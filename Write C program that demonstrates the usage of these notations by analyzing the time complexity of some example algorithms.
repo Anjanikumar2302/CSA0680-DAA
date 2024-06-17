@@ -1,0 +1,16 @@
+#include <stdio.h>
+void constantTime(int n) {
+    printf("Constant Time Complexity\n");
+    printf("Value: %d\n", n);
+}
+void linearTime(int n) {
+    printf("Linear Time Complexity\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", i);
+    }
+}
+int main() {
+    constantTime(5);
+    linearTime(5);
+    return 0;
+}
