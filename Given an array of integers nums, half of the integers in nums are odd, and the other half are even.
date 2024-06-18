@@ -1,63 +1,43 @@
 #include <stdio.h>
-
-// Function to check if a number is even
 int isEven(int num) {
     return num % 2 == 0;
 }
-
-// Function to perform stable partition of the array
 void stablePartition(int nums[], int n) {
-    // Create a temporary array to hold the partitioned result
     int temp[n];
     int evenIndex = 0, oddIndex = 0;
-
-    // Find the first odd number position (for oddIndex start)
     for (int i = 0; i < n; i++) {
         if (!isEven(nums[i])) {
             oddIndex = i;
             break;
         }
     }
-
-    // First pass to copy all even numbers to the temp array
     for (int i = 0; i < n; i++) {
         if (isEven(nums[i])) {
             temp[evenIndex++] = nums[i];
         }
     }
-
-    // Second pass to copy all odd numbers to the temp array
     for (int i = oddIndex; i < n; i++) {
         if (!isEven(nums[i])) {
             temp[evenIndex++] = nums[i];
         }
     }
-
-    // Copy the partitioned result back to the original array
     for (int i = 0; i < n; i++) {
         nums[i] = temp[i];
     }
 }
-
-// Function to print an array
 void printArray(int nums[], int size) {
     for (int i = 0; i < size; i++) {
         printf("%d ", nums[i]);
     }
     printf("\n");
 }
-
 int main() {
-    int nums[] = {9, 4, 1, 6, 3, 2, 7, 8, 5, 10}; // Example array
+    int nums[] = {9, 4, 1, 6, 3, 2, 7, 8, 5, 10}; 
     int n = sizeof(nums) / sizeof(nums[0]);
-
     printf("Original array: ");
     printArray(nums, n);
-
     stablePartition(nums, n);
-
     printf("Partitioned array: ");
     printArray(nums, n);
-
     return 0;
 }
